@@ -1,6 +1,6 @@
 # *cFOSGHam*
 
-#*Unpublished*
+##*Unpublished*
 
 Repository related to manuscript
 ***"Distinctive dynamics of cFOS induction in circumventricular organs compared to major thermoregulatory centers during torpor arousal cycling in a deep hibernator"*** 
@@ -18,6 +18,7 @@ Script 11 and 12 relates to formatting and analysis of *in situ* hybridization d
 
 
 ###Data architecture:
+
 ###>version
                _                                
 platform       x86_64-w64-mingw32               
