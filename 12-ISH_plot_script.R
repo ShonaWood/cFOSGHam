@@ -16,6 +16,7 @@ library(tidyr)
 library(stringr)
 library(ggplot2)
 library(dplyr)
+library(ggpubr)
 
 
 ISH <- read.csv("./Histo/ISH-SUMMARY-ALL.csv", sep = ",")
@@ -159,7 +160,7 @@ p1_ISH<- sum.ISH %>%
 p1_ISH
 
 
-#save the plots
+#save the plots, build easch individually
 #file_name <- paste0("./graphix/ISH-", ROI, ".svg")
 #ggsave(file_name, plot = p1_ISH, width = 7, height = 7, device = "svg")
 

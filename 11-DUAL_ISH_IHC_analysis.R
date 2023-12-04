@@ -288,7 +288,7 @@ table_inspect<- sum.rna %>%
 
 sum.ISH$num_pos_mean <- replace_na(data = sum.ISH$num_pos_mean, replace = 0)
 
-write.csv(sum.rna, "./Histo/ISH-SUMMARY-ALL.csv")
+#write.csv(sum.rna, "./Histo/ISH-SUMMARY-ALL.csv")
 
 #################################################################################
 ################################################################################

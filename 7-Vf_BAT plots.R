@@ -305,7 +305,7 @@ H300$sma<- rollmean(H300$IPTT_adj, k=2, fill = NA)
 #################################################################################################
 plot_final <-gridExtra:: grid.arrange(pVH278,pVH241,pVH230, pVH300 , pVH298, ncol=2 )
 
-plot_final
+#plot_final
  
  
 

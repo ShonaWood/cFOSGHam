@@ -189,6 +189,7 @@ MR_w_cbt <- Mean_BT_Period_states %>%
 
 MR_w_cbt
 
+
 #save plot (uncomment)
 #ggsave("./graphix/Resting_CBT_reset-2.svg",  width = 8, height = 6, plot =MR_w_cbt, dpi = 240 )
 
@@ -335,10 +336,14 @@ t.test(SP8wz12_day$mean_BTind, SP8wz12_night$mean_BTind, paired = F)
 ################################################################################
 
 nT_SP8w4 <- Period_states %>% filter(Period %in% c("SP8w4") & State == "Torpid" )%>%
+  ungroup() %>%
   summarize(n_torpid=n_distinct(ID))%>%as.numeric()
 
 nT_SP8w5 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5") & State == "Torpid" )%>%
-  summarize(n_torpid=n_distinct(ID))%>%as.numeric() + 1   #+1: H222 faulty anipill, deep torpor confirmed by IPTT record 
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid)%>%
+  as.numeric() + 1 #+1: H222 faulty anipill, deep torpor confirmed by IPTT record 
 
 nT_SP8w6 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6") & State == "Torpid" )%>%
   summarize(n_torpid=n_distinct(ID))%>%as.numeric() +1 #H222 as above
@@ -364,6 +369,67 @@ nT_SP8w12 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "S
 nT_SP8w13 <- Period_states %>% filter(State == "Torpid"  )%>%
   summarize(n_torpid=n_distinct(ID))%>%as.numeric() +4 #As above
 
+nT_SP8w4 <- Period_states %>% filter(Period %in% c("SP8w4") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric()
+
+nT_SP8w5 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() + 1 #+1: H222 faulty anipill, deep torpor confirmed by IPTT record 
+
+nT_SP8w6 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +1 #H222 as above
+
+nT_SP8w7 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6","SP8w7") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +1 #H222 as above
+
+nT_SP8w8 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "SP8w7", "SP8w8") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4   #+4: H222 as above. H264, H268, H245 faulty anipills, torpid according to manual check and IR-recordings at week 8
+
+nT_SP8w9 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "SP8w7", "SP8w8","SP8w9") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4 #as above
+
+nT_SP8w10 <-Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "SP8w7", "SP8w8","SP8w9", "SP8w10") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4 #as above
+
+nT_SP8w11 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "SP8w7", "SP8w8","SP8w9", "SP8w10", "SP8w11") & State == "Torpid" )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4 #As above
+
+nT_SP8w12 <- Period_states %>% filter(Period %in% c("SP8w4","SP8w5", "SP8w6", "SP8w7", "SP8w8","SP8w9", "SP8w10", "SP8w11", "SP8w12") & State == "Torpid"  )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4 #As above
+
+nT_SP8w13 <- Period_states %>% filter(State == "Torpid"  )%>%
+  ungroup() %>%
+  summarize(n_torpid=n_distinct(ID))%>%
+  pull(n_torpid) %>%
+  as.numeric() +4 #As above
+
+
 
 percent_torpor <- c(0,0,0,nT_SP8w4/30,nT_SP8w5/30,nT_SP8w6/30,nT_SP8w7/30,nT_SP8w8/30,nT_SP8w9/30,nT_SP8w10/30,nT_SP8w11/30,nT_SP8w12/30,nT_SP8w13/30 )
 
@@ -373,19 +439,31 @@ frac_torpor <- data.frame(percent_torpor,n_weeks_SP8c)
   
 
 Step_plot <- ggplot(frac_torpor, aes(n_weeks_SP8c, percent_torpor))+
- geom_step(linewidth=2, color="dodgerblue4")+ theme_bw()+
+ geom_step(linewidth=2, color="dodgerblue4")+
   scale_x_continuous(n.breaks = 13)+
-  labs(x= expression(degree), y="% Expressed deep torpor")+
-  theme(text = element_text(family = "serif", size=15))
+  scale_y_continuous(n.breaks = 10)+
+  labs(x= "Weeks in SP-Cold", y="% Expressed deep torpor")+
+  theme_bw() +
+  theme(
+    text = element_text(family = "Arial", size = 25),
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black")
+  )
 
 Step_plot
 
-ggsave("./graphix/Percent deep torpor.png",  Step_plot, dpi = 300 )
+#ggsave("./graphix/Percent deep torpor.svg",  plot= Step_plot, width=8, height=6, dpi = 300 )
 
 
 
 ################################################################################
-#Animation of CBT change. NB! Make take some time and processing power! Un comment to run commands
+#Animation of CBT change. NB! Make take some time and processing power! Un-comment to run commands
 library(gganimate)
 library(gifski)
 
@@ -406,19 +484,32 @@ get_density <- function(x, y, ...) {
 
 #Period_states$floordate <- floor_date(Period_states$datetime, unit = "day")
 
-#a <- Period_states %>% 
- # ggplot(aes(tod, ap_t, color=density))+
-# geom_point(size=3, alpha=0.7)+
-#  scale_color_viridis() + ylim(c(5,37)) +coord_polar()
+a <- Period_states %>% 
+  ggplot(aes(tod, ap_t, color=density))+
+  geom_point(size=3, alpha=0.7)+
+  scale_color_viridis()+
+  ylim(c(31,37)) +
+  labs(y= "Euthermic Core Body temperure (C)", x="Time of day (clock time)")+
+  theme_bw() +
+  theme(
+    text = element_text(family = "Arial", size = 25),
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black")
+  )
 
 #a
 
 
-#GIF1 <- a+transition_time(floordate)+
-#  labs(title = "{frame_time}") +
-#  shadow_wake(wake_length = 0.5)
+GIF1 <- a+transition_time(floordate)+
+  labs(title = "{frame_time}") +
+  shadow_wake(wake_length = 0.25)
 
 #GIF1
 
-#animate(animacion, width = 700, height = 432, fps = 25, duration = 15, rewind = FALSE)
-
+#anim_save("./graphix/GIF_core_Tb_resetting.gif", animation =GIF1)

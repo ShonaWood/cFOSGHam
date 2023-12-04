@@ -43,9 +43,9 @@ zt_arousal <- function() {
   arrows.circular(mean.circular(zt_nexit, na.rm = TRUE) - sd.circular(zt_nexit, na.rm = TRUE) * 2, y = rho.circular(zt_nexit, na.rm = TRUE), lty = 5, lwd = 1, shrink = 1.25, col = alpha("black", 0.4), pch = 16)
 }
 
-svg("./graphix/zt_arousal.svg", width = 10, height = 8)
-zt_arousal()
-dev.off()
+#svg("./graphix/zt_arousal.svg", width = 10, height = 8)
+#zt_arousal()
+#dev.off()
 
 zt_entry <- function() {
   plot(zt_nentry , stack = T, sep=0.025, shrink=1.1, cex = 2.1, col = 'gray30')
@@ -54,8 +54,6 @@ zt_entry <- function() {
   arrows.circular(mean.circular(zt_nentry , na.rm = T)-sd.circular(zt_nentry , na.rm = T)*2, y=rho.circular(zt_nentry, na.rm = T),lty=5, lwd=1, shrink = 1.25, col = alpha("black", 0.4), pch=16)
 }
 
-??rho.circular
-??arrows.circular
   
 #svg("./graphix/zt_entry.svg", width = 10, height = 8)
 #zt_entry()
@@ -112,9 +110,9 @@ pl_zt_test_arousal <- function() {
   arrows.circular(mean.circular(zt_test_arousal, na.rm = TRUE) - sd.circular(zt_test_arousal, na.rm = TRUE) * 2, y = rho.circular(zt_test_arousal, na.rm = TRUE), lty = 5, lwd = 1, shrink = 1.25, col = alpha("black", 0.4), pch = 16)
 }
 
-svg("./graphix/zt_test_arousal.svg", width = 10, height = 8)
-pl_zt_test_arousal ()
-dev.off()
+#svg("./graphix/zt_test_arousal.svg", width = 10, height = 8)
+#pl_zt_test_arousal ()
+#dev.off()
 
 pl_zt_test_nentry<- function() {
   plot(zt_test_nentry , stack = T, sep=0.025, shrink=1.1, cex = 2.1, col = 'gray30')
@@ -123,9 +121,9 @@ pl_zt_test_nentry<- function() {
   arrows.circular(mean.circular(zt_test_nentry, na.rm = T)-sd.circular(zt_test_nentry, na.rm = T)*2, y=rho.circular(zt_test_nentry, na.rm = T),lty=5, lwd=1, shrink = 1.25, col = alpha("black", 0.4), pch=16)
 }
 
-svg("./graphix/zt_test_nentry.svg", width = 10, height = 8)
-pl_zt_test_nentry()
-dev.off()
+#svg("./graphix/zt_test_nentry.svg", width = 10, height = 8)
+#pl_zt_test_nentry()
+#dev.off()
 
 
 median.circular(zt_test_arousal, na.rm = T)
