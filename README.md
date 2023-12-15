@@ -1,9 +1,9 @@
 # *cFOSGHam*
 
-#*Unpublished*
+*Unpublished*
 
-Repository related to manuscript
-***"Distinctive dynamics of cFOS induction in circumventricular organs compared to major thermoregulatory centers during torpor arousal cycling in a deep hibernator"*** 
+Repository related to the manuscript
+***"Distinctive dynamics of cFOS induction in circumventricular organs compared to major thermoregulatory centres during torpor arousal cycling in a deep hibernator"*** 
 
 DOI:
 
@@ -12,14 +12,15 @@ Please run scripts in numbered order.
 
 Script 1-10 relates to importing, formatting and analysis of environmental and physiological data during multi-day torpor and spontaneous arousal.  
 
-Script 11 and 12 relates to formatting and analysis of *in situ* hybridization data. 
+Scripts 11 and 12 relate to formatting and analysis of *in situ* hybridization data. 
 
 
 
 
 ###Data architecture:
 
-###>version
+###version
+main
                _                                
 platform       x86_64-w64-mingw32               
 arch           x86_64                           
