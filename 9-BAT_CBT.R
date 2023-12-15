@@ -3,7 +3,7 @@ library(lubridate)
 library(zoo)
 library(plotly)
 library(dplyr)
-library(tidyverse)
+library(tidyr)
 
 #Plot for calculating average IPTT temp and Tb during arousal 
 

@@ -67,7 +67,7 @@ library(DescTools)
 head(sum.ISH)
 #the area of investingation:
 
-ROI <- c('PT')
+ROI <- c('OVLT')
 
 anov.res <- aov(((num_pos_mean/num_det_mean)*100) ~ group, data = sum.ISH %>% filter(Name == ROI))
 summary(anov.res)
@@ -108,7 +108,7 @@ sign.result <- data.frame(
 sign.result #stars used to manually annotate in Inkscape 
 
 
-ROI <- c('PT')
+ROI <- c('OVLT')
 #script to make the different flot are adjusted manually per ROI and saved :)
 p1_ISH<- sum.ISH %>%
   filter(Name == ROI) %>%
@@ -124,7 +124,7 @@ p1_ISH<- sum.ISH %>%
                size = .5, color = "black", 
                width=0.35
   )+
-  scale_y_continuous(limits = c(0, 40)) +
+  scale_y_continuous(limits = c(0, 20)) +
   scale_x_discrete(
     limits = c("IBE2", "ENT", "T40", "A1", "A2", "IBE1"),
     name = ""
@@ -137,23 +137,13 @@ p1_ISH<- sum.ISH %>%
     axis.line = element_line(linewidth = 1.025)
   ) +
   stat_compare_means(method = "t.test",
-                     comparisons = list(c("IBE2", "A1") ),
+                     comparisons = list(c("IBE2", "T40") ),
                      label = "p.signif",
                      size = 9,
                      hide.ns = TRUE,
                      vjust= 0.5,
-                    label.y= 35,
-                    tip.length= c(0.09, 0.81),
-                    bracket.size=0.75
-                    )+
-  stat_compare_means(method = "t.test",
-                     comparisons = list(c("IBE2", "A2") ),
-                     label = "p.signif",
-                     size = 9,
-                     hide.ns = TRUE,
-                     vjust= 0.5,
-                     label.y= 37,
-                     tip.length= c(0.2, 0.01),
+                     label.y= 11,
+                     tip.length= c(0.9, 0.1),
                      bracket.size=0.75
   )
 
@@ -161,6 +151,6 @@ p1_ISH
 
 
 #save the plots, build easch individually
-#file_name <- paste0("./graphix/ISH-", ROI, ".svg")
-#ggsave(file_name, plot = p1_ISH, width = 7, height = 7, device = "svg")
+file_name <- paste0("./graphix/ISH-", ROI, ".svg")
+ggsave(file_name, plot = p1_ISH, width = 7, height = 7, device = "svg")
 
