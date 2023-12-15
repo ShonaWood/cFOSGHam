@@ -98,12 +98,13 @@ plot
 
 
 # Plot the data zoomed in on 0
-plot2 <- ggplot(all_plot_data, aes(x = time_from_anchor, y = ap_t, color=ID )) +
-  geom_line(size=0.5,  alpha=0.7 ) +
+plot2 <- ggplot(all_plot_data, aes(x = time_from_anchor, y = ap_t )) +
+  geom_point(size=0.5,  alpha=0.7 ) +
   labs(x = "Hours",
        y = "Temperature (°C)") +
   scale_x_continuous(limits = c(-8,14) ,breaks = seq(-10,24, by =2))+
-  scale_color_manual(values = rep("gray25", length(unique(all_plot_data$ID)))) +  # Set all lines to black
+  geom_smooth(color='darkblue')+
+  #scale_color_manual(values = rep("gray25", length(unique(all_plot_data$ID)))) +  # Set all lines to black
   #scale_color_viridis_d(option = 'H',alpha=0.85 )+
   #scale_color_brewer(palette = "Spectral")+
   scale_y_continuous(breaks = seq(5,40, by =5))+
@@ -159,7 +160,7 @@ subset_apd <- all_plot_data%>%
 #make linear modeler on data subset for RRmax
 lm_model <- lm(ap_t~ time_from_anchor, data = subset_apd)
 coef <- coef(lm_model)
-eqn <- paste0("y = ", round(coef[1], 2), " + ", round(coef[2], 2), "x")
+eqn <- paste0("y = ", round(coef[2], 2),'x', " + ", round(coef[1], 2))
 
 
 x_range <- seq(min(subset_apd$time_from_anchor) - 3, max(subset_apd$time_from_anchor) +3, by = 0.1)
@@ -175,7 +176,7 @@ p <- plot2 +
 
 p
 
-#ggsave("Entry-zoomed-regrssion.svg", plot =p, width = 7, height = 6, path = "./graphix")
+ggsave("Entry-zoomed-regrssion.svg", plot =p, width = 7, height = 6, path = "./graphix")
 
 
 
