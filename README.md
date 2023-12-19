@@ -3,7 +3,7 @@
 *Unpublished*
 
 Repository related to the manuscript
-***"Distinctive dynamics of cFOS induction in circumventricular organs compared to major thermoregulatory centres during torpor arousal cycling in a deep hibernator"*** 
+***"c-fos induction in the choroid plexus, tanycytes and pars tuberalis is an early indicator of spontaneous arousal from torpor in a deep hibernator"*** 
 
 DOI:
 
